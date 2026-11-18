@@ -1,0 +1,388 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>12 测试结果 · 轨迹级约束一致性</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#faf9f5;color:#1d2928;font:16px/1.8 "Microsoft YaHei","PingFang SC",sans-serif}main{max-width:1024px;margin:auto;padding:48px 40px 85px}h1,h2{font-family:"Source Han Serif SC","Songti SC",SimSun,serif;line-height:1.35}h1{font-size:clamp(28px,4vw,46px);font-weight:650;margin:0 0 12px}h1+p{font-size:14px;color:#586762;border-bottom:2px solid #315c51;padding-bottom:18px}h2{font-size:26px;margin:48px 0 14px;scroll-margin-top:20px}p{margin:14px 0}a{color:#1c5d50;text-underline-offset:3px}nav{display:flex;flex-wrap:wrap;gap:5px 20px;margin:5px 0 27px;font-size:14px}nav a{text-decoration:none;border-bottom:1px solid #a0ada4}nav a:focus-visible{outline:2px solid #174c40}.scroll{overflow-x:auto;margin:15px 0 20px}table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}td,th{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid #ced6cf}th{background:#e6ede6;color:#223f36;font-weight:650}td:not(:first-child){min-width:95px}tr:nth-child(even){background:#f1f3ee}code{font:0.89em Consolas,monospace;overflow-wrap:anywhere}button{color:#215548;border:1px solid #a7b6ac;padding:6px 12px;background:transparent;cursor:pointer}footer{margin-top:36px} @media(max-width:650px){main{padding:24px 15px 50px}table{font-size:13px}td,th{padding:7px 8px}h2{font-size:22px}} @media print{body{background:white}main{padding:0;max-width:none}nav,button{display:none}h2{break-after:avoid}tr{break-inside:avoid}.scroll{overflow:visible}table{font-size:10px}a{color:inherit}} @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}</style></head><body><main><h1>12 测试结果 · 轨迹级约束一致性</h1>
+<p>2026 年 11 月 18 日｜Qwen3.5-9B BF16｜四个 benchmark 的首轮诊断</p><nav aria-label="报告目录"><a href="#s1">实验范围</a><a href="#s2">E1 · 独立约束能否同时成立</a><a href="#s3">E2 · 依赖与工具调用</a><a href="#s4">E3 · 新增或替换约束之后</a><a href="#s5">E4 · 约束理解和实际执行</a><a href="#s6">研究判断</a><a href="#s7">数据、复现与扩样</a></nav>
+<p>ComplexBench 中，完整题面上的单项约束通过 76/94（80.9%），整道题全部通过 9/20（45.0%）。CCTU 中，最终成功 7/20（35.0%），全程无违规且成功 4/20（20.0%）。两者的分母分别是生成任务和工具轨迹。</p>
+<p>SEQUOR 中，每轮满足全部有效规则的比例为 Add 277/500（55.4%）、Replace 433/500（86.6%）。AppWorld 的端到端成功率为 A 组 0/20（0.0%）、B 组 0/20（0.0%）、C 组 0/20（0.0%）。下文同时列出状态断言和失败步骤，供判断这些差距的来源。</p>
+<p>本轮有证据支持局部达标而整体失败，也观察到了给出正确约束后仍错误宣告成功。C 组在 10/13（76.9%） 的操作型任务里，尚无一次成功的业务 API 调用就宣告成功。三组 TGC 均处于零分下限，这批数据无法估计约束提示或状态提示对最终成功率的改善幅度。</p>
+<h2 id="s1">实验范围</h2>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>正式样本与条件</th>
+<th>评分单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E1 · ComplexBench</td>
+<td>20 个纯 AND 中文题，另做 20 个同题单评分项对照</td>
+<td>逐项规则 / 语义评分和整题合取</td>
+</tr>
+<tr>
+<td>E2 · CCTU</td>
+<td>Multi-Hop、Parallel Multi-Hop 各 10 题，各执行一次</td>
+<td>官方工具与验证器，按实际反馈计算 SR / PSR</td>
+</tr>
+<tr>
+<td>E3 · SEQUOR</td>
+<td>Add、Replace 各 10 个对话，每个 50 轮，step_size=5</td>
+<td>每轮每条有效规则分别裁决</td>
+</tr>
+<tr>
+<td>E4 · AppWorld</td>
+<td>20 个 Dev 任务 × A/B/C，另有 20 次独立的理解输出</td>
+<td>官方沙盒状态测试、步骤日志与离线回放</td>
+</tr>
+</tbody>
+</table></div>
+<p>共有 80 个跨 benchmark 样本。AppWorld 为 20 个任务实例、19 个模板，其中两个实例的可见指令相同。各组均使用 Qwen3.5-9B，无训练，温度 0、种子 233、关闭 thinking，服务上下文上限 32,768 tokens。DeepSeek 的 deepseek-flash 只用于专项测试中的文本裁判和早期改写草稿。最终的单约束对照指令由逐题复核版本生成。</p>
+<h2 id="s2">E1 · 独立约束能否同时成立</h2>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>通过 / 总数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原题所有评分项累计 · CSR（微平均）</td>
+<td>76/94（80.9%）</td>
+</tr>
+<tr>
+<td>原题全部同时满足 · ISR</td>
+<td>9/20（45.0%）</td>
+</tr>
+<tr>
+<td>原题至少一项满足但整题失败</td>
+<td>11/20（55.0%）</td>
+</tr>
+<tr>
+<td>原题没有任何评分项通过</td>
+<td>0/20（0.0%）</td>
+</tr>
+<tr>
+<td>原题中预先选定的那一项</td>
+<td>14/20（70.0%）</td>
+</tr>
+<tr>
+<td>同一项独立作为要求，重新生成</td>
+<td>18/20（90.0%）</td>
+</tr>
+</tbody>
+</table></div>
+<p>每题按固定哈希选择一个评分项，保留基础任务、必要原文和该项要求，使用原评分问题再次评分。按同题同项对齐后，单独提出时有 5 题由失败转为通过、1 题反向变化，配对精确检验 p=0.219。覆盖的评分项里也有主题、可用性等基础任务要求。20 条单项对照仅代表所抽的一项，不能据此推断每题其余所有要求单独测试也都会通过。</p>
+<p>仅选择纯 AND 且评分点无依赖的题。本文 CSR / ISR 是这个子集的逐项微平均和整题全部满足率。语义题沿用官方 evaluator 提示和解析，规则题沿用官方 extractor 提示、片段预处理和规则函数，裁判替换为 deepseek-flash。原题整题通过率的 Wilson 95% 区间为 25.8%–65.8%，样本不覆盖全数据集。</p>
+<h2 id="s3">E2 · 依赖与工具调用</h2>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>环境子集</th>
+<th>最终成功 SR</th>
+<th>无违规成功 PSR</th>
+<th>出现明确违规反馈的轨迹</th>
+<th>含违规反馈的步骤</th>
+<th>首次违规步数中位数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multi-Hop</td>
+<td>4/10（40.0%）</td>
+<td>2/10（20.0%）</td>
+<td>5/10（50.0%）</td>
+<td>11/99（11.1%）</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Parallel Multi-Hop</td>
+<td>3/10（30.0%）</td>
+<td>2/10（20.0%）</td>
+<td>6/10（60.0%）</td>
+<td>37/131（28.2%）</td>
+<td>8.0</td>
+</tr>
+<tr>
+<td>all</td>
+<td>7/20（35.0%）</td>
+<td>4/20（20.0%）</td>
+<td>11/20（55.0%）</td>
+<td>48/230（20.9%）</td>
+<td>8</td>
+</tr>
+</tbody>
+</table></div>
+<p>20 条轨迹共发起 205 个模拟工具调用。3 条最终成功但此前有过违规。首次违规只在出现官方明确反馈标记的轨迹中计算。最常见的反馈类型为 MAX CALLS PER TOOL（19 个步骤）、PUNCTUATION（17 个步骤）、IDENTIFIERS（16 个步骤）、FORMAT（6 个步骤）。同一步可触发多类反馈。SR 与 PSR 由官方 judge 对整段消息重算。本轮明确标为 TOOL ORDER 和 TOOL PARALLEL 的反馈各出现在 1 步。依赖型题目上的总体失败率并非纯顺序错误率。</p>
+<h2 id="s4">E3 · 新增或替换约束之后</h2>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>新增 Add</th>
+<th>替换 Replace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>所有有效约束逐项遵循</td>
+<td>1054/1350（78.1%）</td>
+<td>433/500（86.6%）</td>
+</tr>
+<tr>
+<td>每轮所有有效约束均满足</td>
+<td>277/500（55.4%）</td>
+<td>433/500（86.6%）</td>
+</tr>
+<tr>
+<td>最初 5 轮全部满足</td>
+<td>49/50（98.0%）</td>
+<td>46/50（92.0%）</td>
+</tr>
+<tr>
+<td>变更当轮全部满足</td>
+<td>12/20（60.0%）</td>
+<td>82/90（91.1%）</td>
+</tr>
+<tr>
+<td>变更当轮的新规则被执行</td>
+<td>16/20（80.0%）</td>
+<td>82/90（91.1%）</td>
+</tr>
+<tr>
+<td>变更当轮仍保留的旧规则被执行</td>
+<td>25/30（83.3%）</td>
+<td>不适用</td>
+</tr>
+<tr>
+<td>仅 1 条有效规则时整轮通过</td>
+<td>49/50（98.0%）</td>
+<td>433/500（86.6%）</td>
+</tr>
+<tr>
+<td>2 条有效规则时整轮通过</td>
+<td>31/50（62.0%）</td>
+<td>不适用</td>
+</tr>
+<tr>
+<td>3 条有效规则时整轮通过</td>
+<td>197/400（49.2%）</td>
+<td>不适用</td>
+</tr>
+<tr>
+<td>第 1、6、11、50 轮回答切题</td>
+<td>26/40（65.0%）</td>
+<td>24/40（60.0%）</td>
+</tr>
+<tr>
+<td>上述抽查轮既切题又全遵循</td>
+<td>14/40（35.0%）</td>
+<td>22/40（55.0%）</td>
+</tr>
+<tr>
+<td>连续 50 轮全部通过</td>
+<td>2/10（20.0%）</td>
+<td>0/10（0.0%）</td>
+</tr>
+</tbody>
+</table></div>
+<p>Replace 在更新后保持 1 条有效规则，Add 依次累积至 3 条。对同一替换轮的输出另评旧规则，新规则失败但仍符合旧规则的次数为 4/90。规则间可能相容，这一观察不能单独证明旧要求干扰。两组对话内容也不同，组间百分比差异是描述性比较。</p>
+<p>50 轮来自同一对话，不能当作 50 个独立样本。按整段对话自助抽样得到整轮通过率的描述性 95% 区间，Add 为 34.2%–76.6%，Replace 为 81.6%–91.8%。生成上限每轮 512 tokens，共有 297/1000 个回答触及上限，长篇幅规则可能受此影响。</p>
+<h2 id="s5">E4 · 约束理解和实际执行</h2>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>理解层指标</th>
+<th>匹配 / 预测 / 标注</th>
+<th>精确率</th>
+<th>召回率</th>
+<th>F1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>约束提取</td>
+<td>34 / 67 / 67</td>
+<td>50.7%</td>
+<td>50.7%</td>
+<td>50.7%</td>
+</tr>
+<tr>
+<td>直接有向依赖</td>
+<td>9 / 55 / 48</td>
+<td>16.4%</td>
+<td>18.8%</td>
+<td>17.5%</td>
+</tr>
+</tbody>
+</table></div>
+<p>独立理解测试只输入指令。5/20 条返回了空约束清单。首轮使用本研究根据可见任务编制的参考约束图，由 Codex 单次语义对齐，按一对一节点和直接有向边评分，尚无独立人工复标。模型拆分或合并节点会影响两个 F1。另按完整回答合并同义、拆分表述后，覆盖了 43/67（64.2%） 的参考要求。此补充指标只有召回率。Dev 初始指令缺少动态撤销对照，Stage 1 对约束状态更新的诊断能力有限。</p>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>执行条件</th>
+<th>任务满分 TGC</th>
+<th>实际提交</th>
+<th>可映射要求组通过</th>
+<th>全部官方断言通过</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A · 原始条件</td>
+<td>0/20（0.0%）</td>
+<td>1/20（5.0%）</td>
+<td>0/39（0.0%）</td>
+<td>18/99（18.2%）</td>
+</tr>
+<tr>
+<td>B · 加约束及关系</td>
+<td>0/20（0.0%）</td>
+<td>2/20（10.0%）</td>
+<td>0/39（0.0%）</td>
+<td>18/99（18.2%）</td>
+</tr>
+<tr>
+<td>C · 再加每步状态</td>
+<td>0/20（0.0%）</td>
+<td>14/20（70.0%）</td>
+<td>0/39（0.0%）</td>
+<td>18/99（18.2%）</td>
+</tr>
+</tbody>
+</table></div>
+<p>每个任务均从同一初始状态独立执行三次，预算 20 次模型决策。A 组使用可见指令、标准 API 文档入口和环境反馈。B 组额外获得结构化约束及有向依赖。C 组每步再获得基于实际 API 回执和当前会话变量构造的进展摘要，包括成功读取、已接受的操作、当前对象、计数与错误。对象列表和最近记录有展示长度限制。约束清单为本研究标注，scope 使用较粗的“相关对象或操作 / 整体任务”区分。C 对应有界的可观察状态辅助，未验证其等价于全知状态。三组都不用标准答案、参考动作或官方解法。</p>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>配对条件</th>
+<th>新增成功</th>
+<th>失去成功</th>
+<th>结果相同</th>
+<th>双侧配对精确 p</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A → B</td>
+<td>0</td>
+<td>0</td>
+<td>20</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>B → C</td>
+<td>0</td>
+<td>0</td>
+<td>20</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>A → C</td>
+<td>0</td>
+<td>0</td>
+<td>20</td>
+<td>1.000</td>
+</tr>
+</tbody>
+</table></div>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>诊断指标</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初始无操作时预期不满足的断言，最终通过</td>
+<td>0/81（0.0%）</td>
+<td>0/81（0.0%）</td>
+<td>0/81（0.0%）</td>
+</tr>
+<tr>
+<td>初始无操作时预期通过的断言，最终通过</td>
+<td>18/18（100.0%）</td>
+<td>18/18（100.0%）</td>
+<td>18/18（100.0%）</td>
+</tr>
+<tr>
+<td>回放中曾新满足至少一项初始未通过断言的任务</td>
+<td>0/20（0.0%）</td>
+<td>0/20（0.0%）</td>
+<td>0/20（0.0%）</td>
+</tr>
+<tr>
+<td>回放中曾破坏至少一项初始已通过断言的任务</td>
+<td>0/20（0.0%）</td>
+<td>0/20（0.0%）</td>
+<td>0/20（0.0%）</td>
+</tr>
+<tr>
+<td>某项初始已通过断言失效的步骤</td>
+<td>0/381（0.0%）</td>
+<td>0/393（0.0%）</td>
+<td>0/397（0.0%）</td>
+</tr>
+<tr>
+<td>模拟 API 调用报错次数 / 总调用</td>
+<td>133/349（38.1%）</td>
+<td>81/391（20.7%）</td>
+<td>96/387（24.8%）</td>
+</tr>
+<tr>
+<td>有执行错误的模型回合</td>
+<td>170/381（44.6%）</td>
+<td>118/393（30.0%）</td>
+<td>151/397（38.0%）</td>
+</tr>
+<tr>
+<td>文档查询成功但未打印结果的回合</td>
+<td>198/381（52.0%）</td>
+<td>213/393（54.2%）</td>
+<td>203/397（51.1%）</td>
+</tr>
+<tr>
+<td>连续重复同一未显示结果的文档查询的任务</td>
+<td>10/20（50.0%）</td>
+<td>12/20（60.0%）</td>
+<td>17/20（85.0%）</td>
+</tr>
+<tr>
+<td>操作型任务中，业务 API 尚无一次成功调用便宣告成功</td>
+<td>0/13（0.0%）</td>
+<td>0/13（0.0%）</td>
+<td>10/13（76.9%）</td>
+</tr>
+<tr>
+<td>20 步耗尽仍未提交的任务</td>
+<td>19/20（95.0%）</td>
+<td>18/20（90.0%）</td>
+<td>6/20（30.0%）</td>
+</tr>
+<tr>
+<td>达到输出 token 上限的回合</td>
+<td>2/381（0.5%）</td>
+<td>5/393（1.3%）</td>
+<td>8/397（2.0%）</td>
+</tr>
+<tr>
+<td>上下文预算导致省略早期对话对的回合</td>
+<td>3/381（0.8%）</td>
+<td>0/393（0.0%）</td>
+<td>0/397（0.0%）</td>
+</tr>
+</tbody>
+</table></div>
+<p>独立执行官方参考解获得 20/20（100.0%） 的 TGC，证明所选任务可完成、评分可达。参考解检查与 Qwen 运行分开，参考解和评测断言均未出现在模型输入中。</p>
+<p>官方断言既包含交付目标，也包含环境完整性检查。可映射要求组用任务专属映射将断言归并，动作类属性加上实际发生状态变化的前提。若官方只检查最终答案，该任务只计一个综合结果，不能拆成多个已经证实的细项。回放逐条核对调用顺序及成败、提交步骤与终态断言，全部三项一致的轨迹为 60/60（100.0%）；过程指标仅使用这部分。首次未完成任务目标不等于已违规，表中过程违规仅指先满足后来失效的可检验断言。</p>
+<h2 id="s6">研究判断</h2>
+<p>独立要求同时出现时，单项和整题已有明显落差；同题同项重测还给出了独立请求与多要求请求的直接对照。对工具依赖，CCTU 可定位首次违规并区分纠正后的成功。对动态约束，SEQUOR 的更新轮给出了新增约束与保留约束各自的遵循率。三个专项的题材、分母和难度不同，不适合合并成一个总成功率。</p>
+<p>AppWorld 的观察需结合可达性。三组共 17/60 条轨迹实际提交。裸调用文档接口可以执行成功，但模型只有显式打印时才看到正文；原版环境与记录版环境对此行为一致。接口发现、参数填写、操作提交和步数预算都会影响 TGC。C 组的失败只能提示后续调查方向，需在同一决策点证明模型拿到充分状态、存在可行动作、且选择了违反具体约束的动作，才能支持独立执行缺陷。</p>
+<p>另有 1 个任务在独立理解测试中准确提取全部参考约束和直接关系，但在 C 条件下，尚无一次成功的业务应用 API 调用便以成功状态提交。这给出了可定位的无操作成功提交案例。理解测试与执行来自同一模型的两次独立调用；得到正确的约束表示并不保证每一步都执行正确。C 摘要显式显示当前步数和未提交状态，模型可能在预算用尽时据此提交。C 组此类无操作成功提交中，在第 20 步发生的有 9/10（90.0%）。</p>
+<h2 id="s7">数据、复现与扩样</h2>
+<p>样本排序使用固定哈希 r1-v1，专项按类别分层；AppWorld 先覆盖模板再轮转。筛选在模型输出前完成。专项可选池预先排除了不适于本次普通能力评测的任务内容。记录包括官方 Git 修订、CCTU 文件哈希、AppWorld 数据包哈希、稳定样本 ID、条件、回合、模型输出和裁判结果。每个已完成样本或回合独立落盘。扩到每项 50 个样本时，前三项和 AppWorld 各自只新增 30 个任务；AppWorld 这 30 个任务另产生 90 条 A/B/C 轨迹及 30 次理解输出。</p>
+<p>服务器根目录为 <code>/root/autodl-tmp/icml_test/round1</code>。本轮名单在 <code>manifest-20.json</code> 和 <code>app-manifest-20.json</code>，逐题记录在 <code>output/</code>，数值汇总在 <code>output/summary-20.json</code>。测试阶段用于修正接口提示的轨迹和自动改写草稿都排除在正式结果之外。逐题样本使用固定的一次解码，区间和配对检验只作小样本描述。</p>
+<p>官方来源见 <a href="https://github.com/thu-coai/ComplexBench">ComplexBench</a>、<a href="https://github.com/Junjie-Ye/CCTU">CCTU</a>、<a href="https://github.com/deep-spin/SEQUOR">SEQUOR</a> 和 <a href="https://github.com/StonyBrookNLP/appworld">AppWorld</a>。</p>
+<footer><button onclick="window.print()">打印报告</button></footer></main></body></html>

@@ -1,0 +1,582 @@
+{
+  "n": 20,
+  "E1": {
+    "joint": [
+      9,
+      20
+    ],
+    "csr": [
+      76,
+      94
+    ],
+    "single": [
+      18,
+      20
+    ],
+    "same_in_multi": [
+      14,
+      20
+    ],
+    "pairs": {
+      "tie": 14,
+      "p_exact": 0.21875,
+      "gain_count": 5,
+      "loss_count": 1
+    },
+    "partial": 11,
+    "none": 0,
+    "joint_wilson": [
+      0.25819785821938823,
+      0.6579146575922374
+    ],
+    "finish": {
+      "stop": 20
+    }
+  },
+  "E2": {
+    "Multi-Hop": {
+      "sr": [
+        4,
+        10
+      ],
+      "psr": [
+        2,
+        10
+      ],
+      "violating_cases": [
+        5,
+        10
+      ],
+      "violating_steps": [
+        11,
+        99
+      ],
+      "median_first": 8,
+      "calls": 84,
+      "violation_types": {
+        "MIN CALL TIMES": 1,
+        "PUNCTUATION": 4,
+        "MAX CALL TIMES": 2,
+        "MAX CALLS PER TOOL": 2,
+        "FORMAT": 3,
+        "IDENTIFIERS": 1,
+        "MAX LENGTH": 1
+      },
+      "sr_not_psr": 2
+    },
+    "Parallel Multi-Hop": {
+      "sr": [
+        3,
+        10
+      ],
+      "psr": [
+        2,
+        10
+      ],
+      "violating_cases": [
+        6,
+        10
+      ],
+      "violating_steps": [
+        37,
+        131
+      ],
+      "median_first": 8.0,
+      "calls": 121,
+      "violation_types": {
+        "MAX CALL TIMES": 1,
+        "IDENTIFIERS": 15,
+        "MAX CALLS PER TOOL": 17,
+        "FORMAT": 3,
+        "TOOL ORDER": 1,
+        "MIN ROUND": 1,
+        "PUNCTUATION": 13,
+        "TOOL ARGUMENTS": 1,
+        "TOOL PARALLEL": 1
+      },
+      "sr_not_psr": 1
+    },
+    "all": {
+      "sr": [
+        7,
+        20
+      ],
+      "psr": [
+        4,
+        20
+      ],
+      "violating_cases": [
+        11,
+        20
+      ],
+      "violating_steps": [
+        48,
+        230
+      ],
+      "median_first": 8,
+      "calls": 205,
+      "violation_types": {
+        "MIN CALL TIMES": 1,
+        "PUNCTUATION": 17,
+        "MAX CALL TIMES": 3,
+        "MAX CALLS PER TOOL": 19,
+        "FORMAT": 6,
+        "IDENTIFIERS": 16,
+        "MAX LENGTH": 1,
+        "TOOL ORDER": 1,
+        "MIN ROUND": 1,
+        "TOOL ARGUMENTS": 1,
+        "TOOL PARALLEL": 1
+      },
+      "sr_not_psr": 3
+    }
+  },
+  "E3": {
+    "add": {
+      "rates": {
+        "per_constraint": [
+          1054,
+          1350
+        ],
+        "per_turn": [
+          277,
+          500
+        ],
+        "active_1": [
+          49,
+          50
+        ],
+        "first5": [
+          49,
+          50
+        ],
+        "task_relevance": [
+          26,
+          40
+        ],
+        "task_and_all": [
+          14,
+          40
+        ],
+        "nonchange_excluding_first": [
+          255,
+          470
+        ],
+        "active_2": [
+          31,
+          50
+        ],
+        "after5": [
+          228,
+          450
+        ],
+        "new_at_change": [
+          16,
+          20
+        ],
+        "retained_at_change": [
+          25,
+          30
+        ],
+        "change_turn": [
+          12,
+          20
+        ],
+        "active_3": [
+          197,
+          400
+        ]
+      },
+      "episode_perfect": [
+        2,
+        10
+      ],
+      "per_episode_mean": 0.554,
+      "cluster_interval_95": [
+        0.342,
+        0.766
+      ],
+      "finish": {
+        "stop": 325,
+        "length": 175
+      },
+      "max_prompt": 27966,
+      "replacement_verdicts_new_old": {}
+    },
+    "replace": {
+      "rates": {
+        "per_constraint": [
+          433,
+          500
+        ],
+        "per_turn": [
+          433,
+          500
+        ],
+        "active_1": [
+          433,
+          500
+        ],
+        "first5": [
+          46,
+          50
+        ],
+        "task_relevance": [
+          24,
+          40
+        ],
+        "task_and_all": [
+          22,
+          40
+        ],
+        "nonchange_excluding_first": [
+          342,
+          400
+        ],
+        "after5": [
+          387,
+          450
+        ],
+        "new_at_change": [
+          82,
+          90
+        ],
+        "retained_at_change": [
+          0,
+          0
+        ],
+        "change_turn": [
+          82,
+          90
+        ]
+      },
+      "episode_perfect": [
+        0,
+        10
+      ],
+      "per_episode_mean": 0.866,
+      "cluster_interval_95": [
+        0.816,
+        0.918
+      ],
+      "finish": {
+        "stop": 378,
+        "length": 122
+      },
+      "max_prompt": 28027,
+      "replacement_verdicts_new_old": {
+        "(True, False)": 69,
+        "(True, True)": 13,
+        "(False, False)": 4,
+        "(False, True)": 4
+      }
+    }
+  },
+  "E4": {
+    "reference_solutions": [
+      20,
+      20
+    ],
+    "understanding": {
+      "counts": [
+        34,
+        67,
+        67
+      ],
+      "prf": [
+        0.5074626865671642,
+        0.5074626865671642,
+        0.5074626865671642
+      ],
+      "edge_counts": [
+        9,
+        55,
+        48
+      ],
+      "edge_prf": [
+        0.16363636363636364,
+        0.1875,
+        0.17475728155339806
+      ],
+      "empty": 5,
+      "holistic_covered": [
+        43,
+        67
+      ]
+    },
+    "groups": {
+      "A": {
+        "rates": {
+          "tgc": [
+            0,
+            20
+          ],
+          "submitted": [
+            1,
+            20
+          ],
+          "unsubmitted_at_limit": [
+            19,
+            20
+          ],
+          "assertions": [
+            18,
+            99
+          ],
+          "mapped_outcomes": [
+            0,
+            39
+          ],
+          "positive_assertions": [
+            0,
+            81
+          ],
+          "initial_pass_assertions": [
+            18,
+            18
+          ],
+          "invariant_loss_task": [
+            0,
+            20
+          ],
+          "invariant_loss_step": [
+            0,
+            381
+          ],
+          "ever_new_progress": [
+            0,
+            20
+          ],
+          "doc_success_without_print_step": [
+            198,
+            381
+          ],
+          "consecutive_identical_unprinted_docs": [
+            10,
+            20
+          ],
+          "execution_error_step": [
+            170,
+            381
+          ],
+          "output_cap": [
+            2,
+            381
+          ],
+          "history_truncated": [
+            3,
+            381
+          ],
+          "api_call_error": [
+            133,
+            349
+          ],
+          "action_success_claim_without_business_api": [
+            0,
+            13
+          ]
+        },
+        "median_steps": 20.0,
+        "max_prompt": 12890,
+        "api_calls": 349,
+        "error_classes": {
+          "interface/arguments": 155,
+          "other": 2,
+          "authentication": 11,
+          "code/syntax": 2
+        }
+      },
+      "B": {
+        "rates": {
+          "tgc": [
+            0,
+            20
+          ],
+          "submitted": [
+            2,
+            20
+          ],
+          "unsubmitted_at_limit": [
+            18,
+            20
+          ],
+          "assertions": [
+            18,
+            99
+          ],
+          "mapped_outcomes": [
+            0,
+            39
+          ],
+          "positive_assertions": [
+            0,
+            81
+          ],
+          "initial_pass_assertions": [
+            18,
+            18
+          ],
+          "invariant_loss_task": [
+            0,
+            20
+          ],
+          "invariant_loss_step": [
+            0,
+            393
+          ],
+          "ever_new_progress": [
+            0,
+            20
+          ],
+          "doc_success_without_print_step": [
+            213,
+            393
+          ],
+          "consecutive_identical_unprinted_docs": [
+            12,
+            20
+          ],
+          "execution_error_step": [
+            118,
+            393
+          ],
+          "output_cap": [
+            5,
+            393
+          ],
+          "history_truncated": [
+            0,
+            393
+          ],
+          "api_call_error": [
+            81,
+            391
+          ],
+          "action_success_claim_without_business_api": [
+            0,
+            13
+          ]
+        },
+        "median_steps": 20.0,
+        "max_prompt": 10749,
+        "api_calls": 391,
+        "error_classes": {
+          "authentication": 17,
+          "interface/arguments": 91,
+          "other": 5,
+          "code/syntax": 5
+        }
+      },
+      "C": {
+        "rates": {
+          "tgc": [
+            0,
+            20
+          ],
+          "submitted": [
+            14,
+            20
+          ],
+          "unsubmitted_at_limit": [
+            6,
+            20
+          ],
+          "assertions": [
+            18,
+            99
+          ],
+          "mapped_outcomes": [
+            0,
+            39
+          ],
+          "positive_assertions": [
+            0,
+            81
+          ],
+          "initial_pass_assertions": [
+            18,
+            18
+          ],
+          "invariant_loss_task": [
+            0,
+            20
+          ],
+          "invariant_loss_step": [
+            0,
+            397
+          ],
+          "ever_new_progress": [
+            0,
+            20
+          ],
+          "doc_success_without_print_step": [
+            203,
+            397
+          ],
+          "consecutive_identical_unprinted_docs": [
+            17,
+            20
+          ],
+          "execution_error_step": [
+            151,
+            397
+          ],
+          "output_cap": [
+            8,
+            397
+          ],
+          "history_truncated": [
+            0,
+            397
+          ],
+          "api_call_error": [
+            96,
+            387
+          ],
+          "action_success_claim_without_business_api": [
+            10,
+            13
+          ],
+          "unsupported_claim_at_last_turn": [
+            9,
+            10
+          ]
+        },
+        "median_steps": 20.0,
+        "max_prompt": 15906,
+        "api_calls": 387,
+        "error_classes": {
+          "interface/arguments": 139,
+          "authentication": 2,
+          "code/syntax": 8,
+          "other": 2
+        }
+      }
+    },
+    "pairs": {
+      "AB": {
+        "tie": 20,
+        "p_exact": 1,
+        "gain_count": 0,
+        "loss_count": 0
+      },
+      "BC": {
+        "tie": 20,
+        "p_exact": 1,
+        "gain_count": 0,
+        "loss_count": 0
+      },
+      "AC": {
+        "tie": 20,
+        "p_exact": 1,
+        "gain_count": 0,
+        "loss_count": 0
+      }
+    },
+    "valid_replays": [
+      60,
+      60
+    ],
+    "understood_but_false_submit_count": 1
+  }
+}

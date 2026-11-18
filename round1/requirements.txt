@@ -1,0 +1,6 @@
+appworld==0.1.3.post1
+requests==2.34.2
+openai==3.52.0
+func-timeout==4.3.5
+numpy==2.5.5
+markdown-it-py==4.3.0

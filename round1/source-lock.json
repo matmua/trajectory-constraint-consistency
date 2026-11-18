@@ -1,0 +1,10 @@
+{
+  "revisions": {
+    "ComplexBench": "749f4575d5dc981182ecaebb8c292b2a61213cf3",
+    "CCTU": "0b4e3253b08fa2befbe38c4d426441506b95c9b6",
+    "SEQUOR": "6574f28abcc128f2a497ef8a7bf5b628aa432903",
+    "appworld": "42b5bcf3cd334fee33f0c37c02070a9f5807add5"
+  },
+  "cctu_data_sha256": "90799e4f5d9f37db9aa0cba30594ca0b3c11e58776273f2dbba8a6c8d2c86028",
+  "cctu_dataset_revision": "13188b75ab4988c1b054fa78a2f34f1b475fb7ef"
+}

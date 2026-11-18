@@ -1,6 +1,10 @@
 # Trajectory-level Constraint Consistency
 
-Research code for studying how language-model agents follow constraints across a sequence of decisions. The current implementation uses Qwen3.5-9B with the text interface of WebShop.
+Research code for studying how language-model agents follow constraints across a sequence of decisions. The experiments use Qwen3.5-9B to evaluate independent, dependent, and changing constraints.
+
+## First-round benchmark study
+
+The study covers ComplexBench, CCTU, SEQUOR, and AppWorld. The [Chinese results report](round1/report.md) includes paired single-constraint controls, turn-level adherence, and the three AppWorld conditions. The [experiment guide](round1/README.md) describes the frozen samples, scoring, and how to extend the pilot. Download [the standalone HTML report](round1/report.html) to read it offline.
 
 ## WebShop pilot
 

@@ -1,0 +1,17 @@
+env/
+upstream/
+aw/
+private/
+output/
+controls/
+deliverables/
+logs/
+.tmp/
+src/app_gold.py
+src/extend_gold.py
+src/score_understanding.py
+src/outcome_map.py
+src/LICENSE
+src/README_BEFORE_SHARING.md
+app-manifest-*.json
+__pycache__/
