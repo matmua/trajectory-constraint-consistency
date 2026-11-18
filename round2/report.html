@@ -1,0 +1,332 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>13 测试结果 · 跨步骤依赖与实际行动</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#faf9f5;color:#1d2928;font:16px/1.8 "Microsoft YaHei","PingFang SC",sans-serif}main{max-width:1024px;margin:auto;padding:48px 40px 85px}h1,h2{font-family:"Source Han Serif SC","Songti SC",SimSun,serif;line-height:1.35}h1{font-size:clamp(28px,4vw,46px);font-weight:650;margin:0 0 12px}h1+p{font-size:14px;color:#586762;border-bottom:2px solid #315c51;padding-bottom:18px}h2{font-size:26px;margin:48px 0 14px;scroll-margin-top:20px}p{margin:14px 0}a{color:#1c5d50;text-underline-offset:3px}nav{display:flex;flex-wrap:wrap;gap:5px 20px;margin:5px 0 27px;font-size:14px}nav a{text-decoration:none;border-bottom:1px solid #a0ada4}nav a:focus-visible{outline:2px solid #174c40}.scroll{overflow-x:auto;margin:15px 0 20px}table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}td,th{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid #ced6cf}th{background:#e6ede6;color:#223f36;font-weight:650}td:not(:first-child){min-width:95px}tr:nth-child(even){background:#f1f3ee}code{font:0.89em Consolas,monospace;overflow-wrap:anywhere}button{color:#215548;border:1px solid #a7b6ac;padding:6px 12px;background:transparent;cursor:pointer}footer{margin-top:36px} @media(max-width:650px){main{padding:24px 15px 50px}table{font-size:13px}td,th{padding:7px 8px}h2{font-size:22px}} @media print{body{background:white}main{padding:0;max-width:none}nav,button{display:none}h2{break-after:avoid}tr{break-inside:avoid}.scroll{overflow:visible}table{font-size:10px}a{color:inherit}} @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}figure{margin:24px 0 30px;padding:18px 20px;border-left:3px solid #387065;background:#eef2ec}figcaption{font-weight:650;margin-bottom:10px}.barrow{display:inline-block;min-width:min(100%,270px);margin-right:30px}.barrow div{display:flex;align-items:center;gap:8px;font-size:13px}.barrow meter{height:15px;max-width:42%;width:115px}.barrow b{font-variant-numeric:tabular-nums}</style></head><body><main><h1>13 测试结果 · 模型能说出约束后，会照着做吗？</h1>
+<p>2026 年 11 月 18 日｜Qwen3.5-9B BF16｜跨步骤依赖、动态修订与 AppWorld 归因</p><nav aria-label="报告目录"><a href="#s1">1　同一状态下，分别问和做</a><a href="#s2">2　哪些跨步骤依赖有直接证据</a><a href="#s3">3　修订一项后，隔四轮再用</a><a href="#s4">4　AppWorld 为什么得零，怎么修</a><a href="#s5">5　结论边界与后续样本</a></nav><figure><figcaption>同一购物页上，按历史选对下一步的次数</figcaption><div class="barrow"><strong>首查属于当前商品</strong><div><span>直接读历史</span><meter min="0" max="40" value="13" aria-label="首查属于当前商品，直接读历史"></meter><b>13/40</b></div><div><span>加访问索引</span><meter min="0" max="40" value="39" aria-label="首查属于当前商品，加访问索引"></meter><b>39/40</b></div></div><div class="barrow"><strong>首查属于另一商品</strong><div><span>直接读历史</span><meter min="0" max="40" value="40" aria-label="首查属于另一商品，直接读历史"></meter><b>40/40</b></div><div><span>加访问索引</span><meter min="0" max="40" value="34" aria-label="首查属于另一商品，加访问索引"></meter><b>34/40</b></div></div></figure>
+<p><strong>跨步骤依赖最清楚的失败发生在 WebShop。</strong> 同一商品、同一页面、同一条检查顺序，只改变先前检查的是当前商品还是另一件商品。先前查的是别的商品时，下一步点对 40/40；先前已经查过当前商品、应当转向第二个标签时，只点对 13/40。其中 26 次模型能在独立提问中说对下一步，这 26 次里有 13 次在实际浏览器里仍然点错。</p>
+<p><strong>动态替换取决于新规则怎样被使用。</strong> 简单填标签的四个条件全部 20/20。需要按更新后的规则筛选、排序或变换大小写时，模型在 80/80 次直接询问中能指出当前规则，80 次实际输出只有 2 次完全合格。直接在交付请求中重述当前规则能救回一批样本；三条规则合用时仍有明显的执行难度。</p>
+<p><strong>AppWorld 的旧零分有多个来源。</strong> 用原模型输出复评，只修正提交格式，旧 B 组从 0/20 变为 1/20。未提交及实际操作错误的任务仍然失败。相同的 10 个 Dev 任务上，修复接口后重新让模型决策并执行，官方全题通过 1/10。</p>
+<h2 id="s1">1　同一状态下，分别问和做</h2>
+<p>理解支（U）只要求输出当前所需的标签、工具名或值；行动支（E）从相同的历史与可见状态独立生成点击或工具调用。两支都看不到另一支的答案。下表的“只说对”为 U 对且 E 错，“只做对”为 U 错且 E 对。每个格子计一个检查点，表中的检查点可以共享题目或商品。</p>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>检查点</th>
+<th>数量</th>
+<th>说对</th>
+<th>做对</th>
+<th>均对</th>
+<th>只说对</th>
+<th>只做对</th>
+<th>均错</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WebShop · 单独要求点击</td>
+<td>40</td>
+<td>40</td>
+<td>40</td>
+<td>40</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>WebShop · 首查属于另一商品</td>
+<td>40</td>
+<td>40</td>
+<td>40</td>
+<td>40</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>WebShop · 首查属于当前商品</td>
+<td>40</td>
+<td>26</td>
+<td>13</td>
+<td>13</td>
+<td>13</td>
+<td>0</td>
+<td>14</td>
+</tr>
+<tr>
+<td>CCTU · 直接指定输入</td>
+<td>20</td>
+<td>20</td>
+<td>20</td>
+<td>20</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>CCTU · 工单引用原值</td>
+<td>20</td>
+<td>19</td>
+<td>20</td>
+<td>19</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>CCTU · 工单引用替换值</td>
+<td>20</td>
+<td>19</td>
+<td>19</td>
+<td>18</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>CCTU 顺序 · 前置操作已在本工单完成</td>
+<td>10</td>
+<td>5</td>
+<td>9</td>
+<td>5</td>
+<td>0</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>CCTU 顺序 · 前置操作仅在另一工单完成</td>
+<td>10</td>
+<td>6</td>
+<td>9</td>
+<td>5</td>
+<td>1</td>
+<td>4</td>
+<td>0</td>
+</tr>
+</tbody>
+</table></div>
+<p>WebShop 的行动必须是可用点击且实际发生页面切换。CCTU 的两支收到相同的原生工具列表；理解以正确的简短文本作答，行动须真正调用模拟器。理解支违反文本格式也会丢分，因此“只做对”可以包含回答接口的影响。这些配对分数衡量下一步决策。完整任务单独计分。</p>
+<h2 id="s2">2　哪些跨步骤依赖有直接证据</h2>
+<p><strong>WebShop · 同一操作如何因为历史改变。</strong> 从 20 个不同商品出发，各测 Description → Features 和 Features → Description。浏览器先在当前或另一件商品执行第一项检查，再回到目标商品。两段历史长度相同，每组最终商品页的文本哈希完全相同。40 个方向检查点的两项点击单独要求时全部可执行。当前商品已查时的 27 个行动错误中，26 次重开刚查过的标签，1 次选了商品选项。要求下一步点 Description 时只对 1/20，要求点 Features 时对 12/20。顺序方向也影响表现。</p>
+<p>把历史中真实发生的标签访问按商品 ID 列成索引，并保留原始历史。索引只包含已发生的访问。模型仍需按规则推导下一步。</p>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>历史条件</th>
+<th>直接读历史</th>
+<th>加访问索引</th>
+<th>错→对</th>
+<th>对→错</th>
+<th>正确率差的 95% 区间（百分点）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>先前查当前商品</td>
+<td>13/40</td>
+<td>39/40</td>
+<td>26</td>
+<td>0</td>
+<td>+50.0 至 +77.5</td>
+</tr>
+<tr>
+<td>先前查另一商品</td>
+<td>40/40</td>
+<td>34/40</td>
+<td>0</td>
+<td>6</td>
+<td>-25.0 至 -5.0</td>
+</tr>
+</tbody>
+</table></div>
+<p>同一商品、同一顺序下，两种历史都采取正确行动的有 13/40；加索引后为 33/40。区间按商品重抽样 15,000 次，每次同时保留两个顺序方向。索引同时改变了表示和提示长度；另一个商品条件出现回退，不能把改善外推到所有状态。</p>
+<p>同一模型还从首页重新执行了 10 个原始人类购物目标，每个目标每组至多 25 步。两组都要求在最终购买的商品上按顺序检查两个标签。</p>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>自由购物轨迹</th>
+<th>完成购买</th>
+<th>购物奖励满分</th>
+<th>购买物两标签均查</th>
+<th>购买物顺序合规</th>
+<th>购物和顺序都合格</th>
+<th>平均奖励</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原始历史</td>
+<td>1/10</td>
+<td>0/10</td>
+<td>0/10</td>
+<td>0/10</td>
+<td>0/10</td>
+<td>0.067</td>
+</tr>
+<tr>
+<td>加访问索引</td>
+<td>1/10</td>
+<td>0/10</td>
+<td>1/10</td>
+<td>1/10</td>
+<td>0/10</td>
+<td>0.067</td>
+</tr>
+</tbody>
+</table></div>
+<p>两组各只有 1/10 完成购买，购物奖励满分和最终联合成功均为 0/10。检查点上的提升未转化为这批任务的整单成功。完整轨迹把搜索、选品、选规格和购买也计入结果。没买到商品的轨迹不能获得“购买物顺序合规”。这个分母说明检查点上的收益能否延伸到购物全过程。</p>
+<p><strong>CCTU · 区分缺证据、参数绑定与先后次序。</strong> 为上轮 20 题各选一条由原生下游函数验证的输入边。旧自由轨迹有 14/20 题实际尝试该下游调用；13 题在上游反馈已显示目标值后正确调用。未观察到来源且参数也错的 2 次调用集中在 1 题。其余未触发下游调用的轨迹无法判定绑定能力。</p>
+<p>在独立检查点提供两份有工单标识的受控回执，原值和同类替换值分别被指定为当前值。模型直接拿到参数时做对 20/20，引用原值时 20/20，引用替换值时 19/20，两种工单都绑定正确 19/20。替换回执用于反事实干预，下游实际执行 CCTU 函数；查无记录也可正确执行了这一次查询。把空结果直接判为行动错，会混入数据库覆盖不足。</p>
+<p>另从带明确顺序要求的 13 题筛查，可为前后两个原生函数都构造能返回预期结果的参数包有 10 题。改变已有前置调用所属工单，观察模型会补做前置还是继续下游。两支分别做对 9/10 和 9/10。顺序题中有 9 个口头判断报出了相反的工具名，逐条检查后均属选错工具。行动分支往往还能选对。配对差异的方向取决于任务及回答接口。参数包、工单边界以及决策点由实验提供。这些对照比官方端到端 SR 更能隔离具体错误，适用范围也更窄。</p>
+<h2 id="s3">3　修订一项后，隔四轮再用</h2>
+<p>每种任务有 20 组固定输入，均跨四个条件配对。同一轮只改一项；三约束条件保留另两项。四个无关的算术问答采用固定正确回复。立即组将这四轮放在修订前，延迟组放在修订后。总轮数相同，中间没有使用或复述新值。修订后的首次正式使用只发生在最后。</p>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>有效规则</th>
+<th>延迟轮数</th>
+<th>简单标签全对</th>
+<th>变换任务能指出新规则</th>
+<th>执行新规则</th>
+<th>未改规则逐项</th>
+<th>最终全对</th>
+<th>仅满足旧版本¹</th>
+<th>同轮重述后全对</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>20/20</td>
+<td>20/20</td>
+<td>2/20</td>
+<td>—</td>
+<td>2/20</td>
+<td>5/20</td>
+<td>16/20</td>
+</tr>
+<tr>
+<td>1</td>
+<td>4</td>
+<td>20/20</td>
+<td>20/20</td>
+<td>0/20</td>
+<td>—</td>
+<td>0/20</td>
+<td>1/20</td>
+<td>17/20</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>20/20</td>
+<td>20/20</td>
+<td>0/20</td>
+<td>5/40</td>
+<td>0/20</td>
+<td>1/20</td>
+<td>2/20</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td>20/20</td>
+<td>20/20</td>
+<td>0/20</td>
+<td>9/40</td>
+<td>0/20</td>
+<td>2/20</td>
+<td>4/20</td>
+</tr>
+</tbody>
+</table></div>
+<p>¹ 旧版通过且新版失败，评的是同一个被修改的维度。两版都没做对时应记为其他执行错误。简单任务填写运输标签，复杂任务从八条记录生成 ID 清单，评分分别检查奇偶筛选、数量排序及大小写。顺序评分至少需要两个有效 ID。完整成功还要求遵守无专门规则时的默认行为。</p>
+<p>简单任务的静态对照也为 20/20 和 20/20。复杂任务在删去历史、把最终规则与数据一起给出时，单约束全对 14/20，三约束全对 2/20。保留完整历史并在最终请求中重述时，单约束恢复到 16/20 与 17/20。三约束即使重述也只有 2/20 与 4/20。</p>
+<p>三约束立即组有 5/20 至少满足一条但整项没通过，延迟组有 8/20。直接询问当前规则是二选一识别，实际交付还要逐条执行。简单任务达到了满分，复杂任务多个条件接近零分；这组数据能区分调用历史要求和实际变换的难度，无法稳定估计延迟四轮本身的损失。这些是自建对照，与上轮 SEQUOR 每轮使用规则的 Replace 口径不同。</p>
+<h2 id="s4">4　AppWorld 为什么得零，怎么修</h2>
+<div class="scroll"><table>
+<thead>
+<tr>
+<th>同一批 Dev 任务</th>
+<th>官方全题通过</th>
+<th>已提交</th>
+<th>有成功业务调用</th>
+<th>新增非答案状态断言</th>
+<th>最终通过断言¹</th>
+<th>总步数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>旧 A · 原生接口，20 步</td>
+<td>0/10</td>
+<td>0/10</td>
+<td>0/10</td>
+<td>0/10</td>
+<td>9/50</td>
+<td>200</td>
+</tr>
+<tr>
+<td>只自动回显文档，20 步</td>
+<td>0/10</td>
+<td>1/10</td>
+<td>4/10</td>
+<td>0/10</td>
+<td>8/50</td>
+<td>188</td>
+</tr>
+<tr>
+<td>原生接口，50 步</td>
+<td>0/10</td>
+<td>0/10</td>
+<td>0/10</td>
+<td>0/10</td>
+<td>9/50</td>
+<td>500</td>
+</tr>
+<tr>
+<td>自动回显文档，50 步</td>
+<td>1/10</td>
+<td>2/10</td>
+<td>5/10</td>
+<td>1/10</td>
+<td>14/50</td>
+<td>443</td>
+</tr>
+<tr>
+<td>辅助接口，20 步</td>
+<td>0/10</td>
+<td>8/10</td>
+<td>10/10</td>
+<td>5/10</td>
+<td>25/50</td>
+<td>117</td>
+</tr>
+<tr>
+<td>复用上述动作，适配提交格式</td>
+<td>1/10</td>
+<td>8/10</td>
+<td>10/10</td>
+<td>5/10</td>
+<td>30/50</td>
+<td>117</td>
+</tr>
+<tr>
+<td>辅助接口与提交提示，重新推理</td>
+<td>1/10</td>
+<td>6/10</td>
+<td>7/10</td>
+<td>4/10</td>
+<td>27/50</td>
+<td>130</td>
+</tr>
+</tbody>
+</table></div>
+<p>¹ 总断言含初始就通过的保护性检查。“新增”用上一轮在同一初始状态的官方回放作基线。“有成功业务调用”统计 supervisor 和 api_docs 以外的成功 API，排除登录和密码等认证操作。调用成功仍可能用错对象，也可能只读了资料。</p>
+<p><strong>文档和步数。</strong> 10 题按上一轮清单取固定前十，同一模型、同一沙盒。原生 20 步复用已冻结的 A 组，另外三个条件实跑；50 步组也把上限告知模型。自动回显只作用于成功查文档、但环境文字仅为执行成功的步骤，20 步触发 15 次，50 步触发 25 次。两种预算分别从 0 到 0 题、从 0 到 1 题通过。仅将预算提高到 50 步，10 题仍均没有成功业务调用或提交。回显文档后，20 步组有 4 题、50 步组有 5 题发起成功业务调用。</p>
+<p><strong>业务接口和提交格式。</strong> 辅助接口提供公共目录、文档、模拟账户登录和分页函数。模型自行决定业务 API、参数及操作顺序。先运行该接口，然后将完全相同的模型输出从初始状态回放。提交适配器对明确的纯操作请求去掉说明文字，对明确的数字问题且回答仅含一个数值时提取该数值。10/10 组回放的模型输出、API 名称与调用成功序列、非答案断言一致；全题通过由 0/10 变为 1/10。其中一次，7 项业务状态检查均通过，原提交因额外说明文字而失败。适配器只处理窄范围的提交语义。</p>
+<p>把同一适配器用于旧 20 题 A/B/C 三组，原始三组均为零。实际提交的 17/60 条在官方环境回放，其余从未调用成功提交的轨迹结果沿用；三组官方通过分别为 0/20、1/20、0/20。B 里有一题，模型已算对数字，只因附加了自然语言而被官方答案比较判错。旧 A 的零分无法单靠这项修复解决。当前这 10 题的官方参考解均通过。</p>
+<p>重新让模型在改过的接口下决策，1/10 官方通过，其中 1 题在提交时无需适配器改写模型答案。4 题未提交；1 题提交后仅答案断言不通过；4 题提交后仍有其他状态断言不通过。仅答案错也可能源于计算错误。回显加 50 步与改进后的 20 步在线策略共覆盖 2 个不同的成功任务，各自成功率都是 1/10。辅助条件同时改变了提示与适配器，无法再单独归因为登录、分页或措辞。</p>
+<h2 id="s5">5　结论边界与后续样本</h2>
+<p>论文若要主张“模型有时已经理解局部规则，却未把历史状态用于下一步行动”，WebShop 的同页反事实、理解与点击分离、以及按商品显示访问记录的干预提供了三层证据。CCTU 的参数查询接近满分，表明清楚标注来源的值传递相对容易；购物或 AppWorld 的总失败率都不宜直接当作跨步骤依赖错误率。</p>
+<p>动态实验支持更具体的区分。简单替换可以延迟并与其他字段共存；需要把修订作用于多个数据项时，能认出当前规则与交付正确结果之间出现了缺口。若要量化延迟的独立影响，后续宜使用在立即条件下处于中等成功率的任务，保留同一批输入和静态能力对照。</p>
+<p>本轮单模型、温度 0、种子 233、关闭 thinking、32K 上下文，在一张 32 GB RTX 5090 上运行。评分使用原生模拟器、官方断言或确定性规则。20 个商品各提供两个方向，动态测试有 20 个输入变体、三种规则维度，AppWorld 主消融有 10 个 Dev 任务。样本内部的多次观测相关，百分比应连同分母阅读。</p>
+<p>服务器项目为 /root/autodl-tmp/icml_test/round2。out 保存每项真实输出、状态、模拟器调用、原始评分与私有 AppWorld 清单。公开仓库 round2 下的 metrics.json、item_scores.json 和 sample_manifest.json 分别给出汇总、可公开的逐例评分和已测清单。扩大样本时可跳过已有键；CCTU 留有候选题号。当前 WebShop 小目录只有 13 个人类购物目标，扩到 50 个独立完整购物任务需更大目录；检查点可另增商品。</p>
+<footer><button onclick="window.print()">打印报告</button></footer></main></body></html>
