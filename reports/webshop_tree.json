@@ -1,0 +1,841 @@
+{
+  "sha": "64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
+  "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
+  "tree": [
+    {
+      "path": ".github",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f40b5fbc658a8297639850abd5bf92eaa8454a9a",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/f40b5fbc658a8297639850abd5bf92eaa8454a9a"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d26e5ba905d39e486d8109f36a44ae203207e9a",
+      "size": 587,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/8d26e5ba905d39e486d8109f36a44ae203207e9a"
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63d7da782182af9a3022d46004064e101e67097c",
+      "size": 575,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/63d7da782182af9a3022d46004064e101e67097c"
+    },
+    {
+      "path": ".github/workflows",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "333a0ae9816c9ee9d51ddf6a5258079d5a15ccd1",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/333a0ae9816c9ee9d51ddf6a5258079d5a15ccd1"
+    },
+    {
+      "path": ".github/workflows/pytest.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02ee71f8165c003d1aadec833d98e7ecddfc4e5b",
+      "size": 811,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/02ee71f8165c003d1aadec833d98e7ecddfc4e5b"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "69b0e7bd5e0a764286ceacb39ba05bc868e51afd",
+      "size": 180,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/69b0e7bd5e0a764286ceacb39ba05bc868e51afd"
+    },
+    {
+      "path": "LICENSE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3bf435ec0493e58e4c7d2da5f0303a72f6dd00e6",
+      "size": 1094,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/3bf435ec0493e58e4c7d2da5f0303a72f6dd00e6"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eae73b266da66b83a785cdd1cbd0eeefb010c9a6",
+      "size": 7729,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/eae73b266da66b83a785cdd1cbd0eeefb010c9a6"
+    },
+    {
+      "path": "README_INSTALL_ARM-MAC.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7b529d20831627f1f5484d11ec1e51d6e8e4bd3",
+      "size": 2057,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/a7b529d20831627f1f5484d11ec1e51d6e8e4bd3"
+    },
+    {
+      "path": "assets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bc797ab3d614eab3ecf5be3480cfc21c37f18e34",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/bc797ab3d614eab3ecf5be3480cfc21c37f18e34"
+    },
+    {
+      "path": "assets/diagram.gif",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba6d498a7fdf8fe2a96e8e2c3648ef3ef260def7",
+      "size": 1543953,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/ba6d498a7fdf8fe2a96e8e2c3648ef3ef260def7"
+    },
+    {
+      "path": "assets/model_ckpts.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6045ef34c9e06b427bbcd4ea59820d42745b01b7",
+      "size": 36472,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/6045ef34c9e06b427bbcd4ea59820d42745b01b7"
+    },
+    {
+      "path": "assets/transfer-logic.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db0fb18b239098eb50d0ae89d2c77d657f855f54",
+      "size": 49539,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/db0fb18b239098eb50d0ae89d2c77d657f855f54"
+    },
+    {
+      "path": "baseline_models",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ec24f0270573054bfa8a05839c83b5319b503c95",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/ec24f0270573054bfa8a05839c83b5319b503c95"
+    },
+    {
+      "path": "baseline_models/.gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "acfc254e3547d8d24a6464c9ac524f509b0ead64",
+      "size": 1373,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/acfc254e3547d8d24a6464c9ac524f509b0ead64"
+    },
+    {
+      "path": "baseline_models/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2723bb04831ee9d93dc4eabeb3966073fa2d81ef",
+      "size": 3592,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/2723bb04831ee9d93dc4eabeb3966073fa2d81ef"
+    },
+    {
+      "path": "baseline_models/agent.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a8166f03efe50a1c69e8dc6ee11320d3c3ff129",
+      "size": 7408,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/8a8166f03efe50a1c69e8dc6ee11320d3c3ff129"
+    },
+    {
+      "path": "baseline_models/data",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d12c6b1ebf98b34633c1d1f53ceb90b3152cf2d4",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/d12c6b1ebf98b34633c1d1f53ceb90b3152cf2d4"
+    },
+    {
+      "path": "baseline_models/data/goal_query_map.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e6b6424fab8d62ff95126cf625f740c2801819f",
+      "size": 244809,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/8e6b6424fab8d62ff95126cf625f740c2801819f"
+    },
+    {
+      "path": "baseline_models/data/goal_query_predict.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9d3819cdbe871a0ca683a402ed4ab6283c7e9bc",
+      "size": 7118960,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/d9d3819cdbe871a0ca683a402ed4ab6283c7e9bc"
+    },
+    {
+      "path": "baseline_models/data/human_goals.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "95f63cf63ada5ed0c923dbfdfde6105170b1f603",
+      "size": 999419,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/95f63cf63ada5ed0c923dbfdfde6105170b1f603"
+    },
+    {
+      "path": "baseline_models/data/il_trajs_finalized_images.zip",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "36da904c4223b5ee53f49c22201c5772144f6bc3",
+      "size": 19661594,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/36da904c4223b5ee53f49c22201c5772144f6bc3"
+    },
+    {
+      "path": "baseline_models/data/items_human_ins.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2ab7479b9798e0b62ea394e065f3d506875f090",
+      "size": 5137548,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/b2ab7479b9798e0b62ea394e065f3d506875f090"
+    },
+    {
+      "path": "baseline_models/env.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9ba158a905a65ae0ea19bb1bbf94a4fb4bb0104",
+      "size": 9953,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/d9ba158a905a65ae0ea19bb1bbf94a4fb4bb0104"
+    },
+    {
+      "path": "baseline_models/generate_search.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11beb3943a0509d32c48994ba899382f8684daa5",
+      "size": 1238,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/11beb3943a0509d32c48994ba899382f8684daa5"
+    },
+    {
+      "path": "baseline_models/logger.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d47e7c9cc5874ab7435f13f7318be0ff1dc945c2",
+      "size": 14969,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/d47e7c9cc5874ab7435f13f7318be0ff1dc945c2"
+    },
+    {
+      "path": "baseline_models/models",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d6f884f9b06577d329e4d344739a102745d37d78",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/d6f884f9b06577d329e4d344739a102745d37d78"
+    },
+    {
+      "path": "baseline_models/models/bert.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff563275eae85a707f1543141f4c33349b0a07b5",
+      "size": 4827,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/ff563275eae85a707f1543141f4c33349b0a07b5"
+    },
+    {
+      "path": "baseline_models/models/modules.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "51b9896752146013962621e1e871932e032d067d",
+      "size": 5914,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/51b9896752146013962621e1e871932e032d067d"
+    },
+    {
+      "path": "baseline_models/models/rnn.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7fefbd6937825c08031c9ff88b63afd00c329589",
+      "size": 5297,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/7fefbd6937825c08031c9ff88b63afd00c329589"
+    },
+    {
+      "path": "baseline_models/requirements.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c71eaf9204ce29b279ba7fb7d0e090df6db3599d",
+      "size": 48,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/c71eaf9204ce29b279ba7fb7d0e090df6db3599d"
+    },
+    {
+      "path": "baseline_models/test.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e83f5e9a782af547b556c89d00f4a0fcd4c4cd0a",
+      "size": 5533,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/e83f5e9a782af547b556c89d00f4a0fcd4c4cd0a"
+    },
+    {
+      "path": "baseline_models/train_choice_il.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "757635a04c8cf05e39ad3b5ddd69a959f0873022",
+      "size": 24786,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/757635a04c8cf05e39ad3b5ddd69a959f0873022"
+    },
+    {
+      "path": "baseline_models/train_rl.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34265c05a280a736885f0bf364431c462b6baf67",
+      "size": 10475,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/34265c05a280a736885f0bf364431c462b6baf67"
+    },
+    {
+      "path": "baseline_models/train_search_il.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6228cc3aff9914c7e51e7c5182980da84646ab0",
+      "size": 4996,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/b6228cc3aff9914c7e51e7c5182980da84646ab0"
+    },
+    {
+      "path": "conftest.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "requirements.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77eda3bce2195aae84c1523b9a88ae270c1d33c7",
+      "size": 340,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/77eda3bce2195aae84c1523b9a88ae270c1d33c7"
+    },
+    {
+      "path": "requirements_arm.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fad5d5a49ecbd014301470e0347571f5ff89c717",
+      "size": 328,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/fad5d5a49ecbd014301470e0347571f5ff89c717"
+    },
+    {
+      "path": "run_dev.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "73442e285512e329b33e4959d4a205e93fde2285",
+      "size": 84,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/73442e285512e329b33e4959d4a205e93fde2285"
+    },
+    {
+      "path": "run_envs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5de6903672ab6014bb57f799ea3e91fc79d413c1",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/5de6903672ab6014bb57f799ea3e91fc79d413c1"
+    },
+    {
+      "path": "run_envs/run_web_agent_site_env.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c9b9049be4916d70bd2b4bd519de8af796f6a981",
+      "size": 1228,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/c9b9049be4916d70bd2b4bd519de8af796f6a981"
+    },
+    {
+      "path": "run_envs/run_web_agent_text_env.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ddc54bc99a89702364bd0b4b198a50884c1b7ce7",
+      "size": 981,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/ddc54bc99a89702364bd0b4b198a50884c1b7ce7"
+    },
+    {
+      "path": "run_prod.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "7ae92ebfc202699dba847643804096b768ec52c7",
+      "size": 47,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/7ae92ebfc202699dba847643804096b768ec52c7"
+    },
+    {
+      "path": "run_web_agent_site_env.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e6c1cd95fd7a62d54ac71c246bc02d6d044bbb49",
+      "size": 54,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/e6c1cd95fd7a62d54ac71c246bc02d6d044bbb49"
+    },
+    {
+      "path": "run_web_agent_text_env.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "02f107c0ebbb839ecc4828a6db73fd3072422cfe",
+      "size": 54,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/02f107c0ebbb839ecc4828a6db73fd3072422cfe"
+    },
+    {
+      "path": "search_engine",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c29e61c87abab4aa4844ba7c2de908a7ea61dd12",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/c29e61c87abab4aa4844ba7c2de908a7ea61dd12"
+    },
+    {
+      "path": "search_engine/convert_product_file_format.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3985cd81a0276bf87b637c2949a04bdf89937e4b",
+      "size": 1322,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/3985cd81a0276bf87b637c2949a04bdf89937e4b"
+    },
+    {
+      "path": "search_engine/lucene_searcher.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ebe69552e411736d297532b0d77e9d9287671576",
+      "size": 326,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/ebe69552e411736d297532b0d77e9d9287671576"
+    },
+    {
+      "path": "search_engine/run_indexing.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "9674da9635d86b04b8c2bc6e2d7c327f6b1f372a",
+      "size": 903,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/9674da9635d86b04b8c2bc6e2d7c327f6b1f372a"
+    },
+    {
+      "path": "setup.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b42e91ceb2088181600e20156760429103fcba8d",
+      "size": 2117,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/b42e91ceb2088181600e20156760429103fcba8d"
+    },
+    {
+      "path": "setup_arm.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6e2a393e5ffa21bfb448d95650fc992e3c456b1",
+      "size": 2141,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/e6e2a393e5ffa21bfb448d95650fc992e3c456b1"
+    },
+    {
+      "path": "tests",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ae1e29f8710bd299d6fbfb98b6f51478c9dfde83",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/ae1e29f8710bd299d6fbfb98b6f51478c9dfde83"
+    },
+    {
+      "path": "tests/transfer",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8133991811d4310fbb17a71c8aa3b17126a0ddfe",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/8133991811d4310fbb17a71c8aa3b17126a0ddfe"
+    },
+    {
+      "path": "tests/transfer/mocks",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "05e7e331f0732493fe0bda7e963650f2e7daf4c9",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/05e7e331f0732493fe0bda7e963650f2e7daf4c9"
+    },
+    {
+      "path": "tests/transfer/mocks/mock_parse_item_page_amz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c7a650d333f55224c57997caf39862798f09235",
+      "size": 1781852,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/7c7a650d333f55224c57997caf39862798f09235"
+    },
+    {
+      "path": "tests/transfer/mocks/mock_parse_item_page_ebay",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d3c04c8a52ffff56055d9a159e2b1d007591125",
+      "size": 535099,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/7d3c04c8a52ffff56055d9a159e2b1d007591125"
+    },
+    {
+      "path": "tests/transfer/mocks/mock_parse_item_page_ws",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7109a700caddf77e4ffa00f23a00dfc4c329080a",
+      "size": 7805,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/7109a700caddf77e4ffa00f23a00dfc4c329080a"
+    },
+    {
+      "path": "tests/transfer/mocks/mock_parse_item_page_ws_desc",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "badf99b16a05d7bd1f6b748bf57f822e528f490c",
+      "size": 3212,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/badf99b16a05d7bd1f6b748bf57f822e528f490c"
+    },
+    {
+      "path": "tests/transfer/mocks/mock_parse_item_page_ws_feat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80990de27dbd461291f7a4bc72b45fb18d15ff91",
+      "size": 5126,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/80990de27dbd461291f7a4bc72b45fb18d15ff91"
+    },
+    {
+      "path": "tests/transfer/mocks/mock_parse_results_amz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "71c83ab1905cad98a0a4459d9bf839c07809b13f",
+      "size": 1145450,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/71c83ab1905cad98a0a4459d9bf839c07809b13f"
+    },
+    {
+      "path": "tests/transfer/mocks/mock_parse_results_ebay",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68c7bfa7c7c6df847353cb934177513448a287e3",
+      "size": 1304285,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/68c7bfa7c7c6df847353cb934177513448a287e3"
+    },
+    {
+      "path": "tests/transfer/mocks/mock_parse_results_ws",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d19465bada332763b5349b5a0fdd12aaaaec1009",
+      "size": 20727,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/d19465bada332763b5349b5a0fdd12aaaaec1009"
+    },
+    {
+      "path": "tests/transfer/test_predict_help.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44384a82026e123583b56dedd2e30cb792fd58e5",
+      "size": 24893,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/44384a82026e123583b56dedd2e30cb792fd58e5"
+    },
+    {
+      "path": "tests/web-agent-site",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "28f057f0c6a2fe7e2af64a0beddf75161f82aacc",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/28f057f0c6a2fe7e2af64a0beddf75161f82aacc"
+    },
+    {
+      "path": "tests/web-agent-site/engine",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "305579fcda79edcc0602a02bf695a77e02f26f84",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/305579fcda79edcc0602a02bf695a77e02f26f84"
+    },
+    {
+      "path": "tests/web-agent-site/engine/test_goal.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f7b082210d6f2017727cba09a26552de4a594b7",
+      "size": 7913,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/2f7b082210d6f2017727cba09a26552de4a594b7"
+    },
+    {
+      "path": "tests/web-agent-site/engine/test_normalize.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a0f0b2ec87a8796c1f3fbb5686de51b6971234c",
+      "size": 1752,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/2a0f0b2ec87a8796c1f3fbb5686de51b6971234c"
+    },
+    {
+      "path": "tests/web-agent-site/test_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94fc170d48470b245c8c3dbc7c1d8c018b641727",
+      "size": 1406,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/94fc170d48470b245c8c3dbc7c1d8c018b641727"
+    },
+    {
+      "path": "transfer",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a75dc19687409e7277903f044862cd6117a06eb6",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/a75dc19687409e7277903f044862cd6117a06eb6"
+    },
+    {
+      "path": "transfer/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90a6d1aaeb9ce18fc83598cb4a820df2d60747b4",
+      "size": 2172,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/90a6d1aaeb9ce18fc83598cb4a820df2d60747b4"
+    },
+    {
+      "path": "transfer/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "transfer/app.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee5e71dff7b639074cd30c381cfd2892abe1d165",
+      "size": 14366,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/ee5e71dff7b639074cd30c381cfd2892abe1d165"
+    },
+    {
+      "path": "transfer/predict_help.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6333978cdc67ffe9c67e576d50c093e13ed4fe96",
+      "size": 16740,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/6333978cdc67ffe9c67e576d50c093e13ed4fe96"
+    },
+    {
+      "path": "transfer/webshop_lite.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "558e194e36f43c27c531fb9c561b5fef603bf0ea",
+      "size": 3249,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/558e194e36f43c27c531fb9c561b5fef603bf0ea"
+    },
+    {
+      "path": "web_agent_site",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3c8823d865a076bd2f4fd33c3bbbc01f9367e40e",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/3c8823d865a076bd2f4fd33c3bbbc01f9367e40e"
+    },
+    {
+      "path": "web_agent_site/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "web_agent_site/app.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1a5e6cfc3943ee931c72238bc7b4e136d6da86c",
+      "size": 8284,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/a1a5e6cfc3943ee931c72238bc7b4e136d6da86c"
+    },
+    {
+      "path": "web_agent_site/attributes",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "efe424a0b5814c2fe62d08c458fb79269914bcae",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/efe424a0b5814c2fe62d08c458fb79269914bcae"
+    },
+    {
+      "path": "web_agent_site/attributes/annotate.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "474de749734abcbf4c60ec50077a90c59fe7174d",
+      "size": 1923,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/474de749734abcbf4c60ec50077a90c59fe7174d"
+    },
+    {
+      "path": "web_agent_site/attributes/generate_attrs.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b139666625c8428274b326f0934066baebf5816",
+      "size": 5151,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/9b139666625c8428274b326f0934066baebf5816"
+    },
+    {
+      "path": "web_agent_site/engine",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9e9922018f9ffc0d4ae389e3517b87b46966c614",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/9e9922018f9ffc0d4ae389e3517b87b46966c614"
+    },
+    {
+      "path": "web_agent_site/engine/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "web_agent_site/engine/engine.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e5eee3f5fcd96a4acd7defbeef4bef966324e4b",
+      "size": 12543,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/2e5eee3f5fcd96a4acd7defbeef4bef966324e4b"
+    },
+    {
+      "path": "web_agent_site/engine/goal.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "09ad26819db8b90ec09be24fa542c2fd387e725d",
+      "size": 9925,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/09ad26819db8b90ec09be24fa542c2fd387e725d"
+    },
+    {
+      "path": "web_agent_site/engine/normalize.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1305696a2f377d40234e07e03d995fd172a0547",
+      "size": 3819,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/e1305696a2f377d40234e07e03d995fd172a0547"
+    },
+    {
+      "path": "web_agent_site/envs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "47e2b9d0f9f1ee01e10df624c25cc85b3187062c",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/47e2b9d0f9f1ee01e10df624c25cc85b3187062c"
+    },
+    {
+      "path": "web_agent_site/envs/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f7ab62a3d8d53697a5b954dcfcbcb861e02ab07",
+      "size": 363,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/2f7ab62a3d8d53697a5b954dcfcbcb861e02ab07"
+    },
+    {
+      "path": "web_agent_site/envs/chromedriver",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b97d4794d5ba93558ecd14d796b3ed821a0b3216",
+      "size": 16636712,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/b97d4794d5ba93558ecd14d796b3ed821a0b3216"
+    },
+    {
+      "path": "web_agent_site/envs/web_agent_site_env.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb4b01248e402035a91d05a882e79d54a3690466",
+      "size": 7893,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/eb4b01248e402035a91d05a882e79d54a3690466"
+    },
+    {
+      "path": "web_agent_site/envs/web_agent_text_env.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9c8d27bea504e4a619e116060d0c08c49f843893",
+      "size": 25794,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/9c8d27bea504e4a619e116060d0c08c49f843893"
+    },
+    {
+      "path": "web_agent_site/models",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6b1b62bc6bc4c9e76b331db0921b58852173b8a3",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/6b1b62bc6bc4c9e76b331db0921b58852173b8a3"
+    },
+    {
+      "path": "web_agent_site/models/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61eb5c90d1f5b346476ecce72dd1b410d554adcd",
+      "size": 80,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/61eb5c90d1f5b346476ecce72dd1b410d554adcd"
+    },
+    {
+      "path": "web_agent_site/models/models.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8fbd3fb234cb17750815f3b2e4e39830f4591b23",
+      "size": 1295,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/8fbd3fb234cb17750815f3b2e4e39830f4591b23"
+    },
+    {
+      "path": "web_agent_site/static",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "93b4c786a473533c04369ff3c191a43a350233ed",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/93b4c786a473533c04369ff3c191a43a350233ed"
+    },
+    {
+      "path": "web_agent_site/static/images",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "01f5977c4da7222b2472347092e81429f0168c2c",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/01f5977c4da7222b2472347092e81429f0168c2c"
+    },
+    {
+      "path": "web_agent_site/static/images/no-image-available.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "660a049c66c4572b5bdb2bb23ae2f8303b93cf50",
+      "size": 37283,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/660a049c66c4572b5bdb2bb23ae2f8303b93cf50"
+    },
+    {
+      "path": "web_agent_site/static/style.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ff582c5890390f82b965c022d6285674e943ed2",
+      "size": 3514,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/4ff582c5890390f82b965c022d6285674e943ed2"
+    },
+    {
+      "path": "web_agent_site/templates",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "59aeeb95bc22d9c50d095569bab828436839b0c8",
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/trees/59aeeb95bc22d9c50d095569bab828436839b0c8"
+    },
+    {
+      "path": "web_agent_site/templates/attributes_page.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68ec6b98edbf1880dc13e5b9b30f4c657f21cfc2",
+      "size": 2567,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/68ec6b98edbf1880dc13e5b9b30f4c657f21cfc2"
+    },
+    {
+      "path": "web_agent_site/templates/description_page.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5fd598e613abee0f3940e79c016dc9fbfa9cd4f7",
+      "size": 1745,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/5fd598e613abee0f3940e79c016dc9fbfa9cd4f7"
+    },
+    {
+      "path": "web_agent_site/templates/done_page.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4803dc89764961be11de208c0ad4de6281aca89e",
+      "size": 2653,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/4803dc89764961be11de208c0ad4de6281aca89e"
+    },
+    {
+      "path": "web_agent_site/templates/features_page.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4baab1047c07be55f98b8598f02226d3fd2275b1",
+      "size": 1888,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/4baab1047c07be55f98b8598f02226d3fd2275b1"
+    },
+    {
+      "path": "web_agent_site/templates/item_page.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a4b4bb3f758d76545d0e66829620be7f0886503a",
+      "size": 5553,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/a4b4bb3f758d76545d0e66829620be7f0886503a"
+    },
+    {
+      "path": "web_agent_site/templates/results_page.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03373f57a95f2da4528f39ddd2175c8bf0b485d3",
+      "size": 4164,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/03373f57a95f2da4528f39ddd2175c8bf0b485d3"
+    },
+    {
+      "path": "web_agent_site/templates/review_page.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "805842909c2edb1ffc8db54ed1258bc62415c981",
+      "size": 2506,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/805842909c2edb1ffc8db54ed1258bc62415c981"
+    },
+    {
+      "path": "web_agent_site/templates/search_page.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f834614a4f66e9bc830e94d91c992ca0189d6905",
+      "size": 1468,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/f834614a4f66e9bc830e94d91c992ca0189d6905"
+    },
+    {
+      "path": "web_agent_site/utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f1d7447678ab1d663b6a55fbeac701f37ecef129",
+      "size": 1728,
+      "url": "https://api.github.com/repos/princeton-nlp/WebShop/git/blobs/f1d7447678ab1d663b6a55fbeac701f37ecef129"
+    }
+  ],
+  "truncated": false
+}

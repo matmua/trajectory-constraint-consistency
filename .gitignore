@@ -1,0 +1,25 @@
+# Local inputs, generated outputs, credentials and environments
+.env
+.env.*
+*.pem
+*.key
+.venv*/
+.cache/
+__pycache__/
+*.pyc
+models/
+data/
+logs/
+results/
+reports/*
+!reports/inference_requirements.txt
+!reports/modelscope_model_files.json
+!reports/webshop_requirements.txt
+!reports/webshop_tree.json
+!reports/wheel_download_manifest.json
+third_party/*.tar.gz
+third_party/WebShop/data
+third_party/WebShop/search_engine/resources*/
+third_party/WebShop/search_engine/indexes*/
+scripts/check_github_auth.py
+scripts/cleanup_old_models.py

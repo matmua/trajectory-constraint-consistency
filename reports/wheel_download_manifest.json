@@ -1,0 +1,66 @@
+[
+  {
+    "name": "torch",
+    "version": "2.10.0",
+    "filename": "torch-2.10.0-3-cp312-cp312-manylinux_2_28_x86_64.whl",
+    "url": "https://mirrors.aliyun.com/pypi/packages/b3/7a/abada41517ce0011775f0f4eacc79659bc9bc6c361e6bfe6f7052a6b9363/torch-2.10.0-3-cp312-cp312-manylinux_2_28_x86_64.whl",
+    "bytes": 915622781,
+    "sha256": "98c01b8bb5e3240426dcde1446eed6f40c778091c8544767ef1168fc663a05a6"
+  },
+  {
+    "name": "triton",
+    "version": "3.6.0",
+    "filename": "triton-3.6.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+    "url": "https://mirrors.aliyun.com/pypi/packages/ab/a8/cdf8b3e4c98132f965f88c2313a4b493266832ad47fb52f23d14d4f86bb5/triton-3.6.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+    "bytes": 188266850,
+    "sha256": "74caf5e34b66d9f3a429af689c1c7128daba1d8208df60e81106b115c00d6fca"
+  },
+  {
+    "name": "vllm",
+    "version": "0.18.0",
+    "filename": "vllm-0.18.0-cp38-abi3-manylinux_2_31_x86_64.whl",
+    "url": "https://mirrors.aliyun.com/pypi/packages/4f/e9/59cf9b8939b51e859d2166ac3336b353f52ec4f9ceda34228aae7b386840/vllm-0.18.0-cp38-abi3-manylinux_2_31_x86_64.whl",
+    "bytes": 433215727,
+    "sha256": "0bc51491598f4bcd161b693b27cbe2864082d6c49fa9065965d94b371f6ae8ef"
+  },
+  {
+    "name": "llvmlite",
+    "version": "0.44.0",
+    "filename": "llvmlite-0.44.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "url": "https://mirrors.aliyun.com/pypi/packages/cb/da/8341fd3056419441286c8e26bf436923021005ece0bff5f41906476ae514/llvmlite-0.44.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "bytes": 42361901,
+    "sha256": "c0143a5ef336da14deaa8ec26c5449ad5b6a2b564df82fcef4be040b9cacfea9"
+  },
+  {
+    "name": "nvidia-nvshmem-cu12",
+    "version": "3.4.5",
+    "filename": "nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+    "url": "https://mirrors.aliyun.com/pypi/packages/b5/09/6ea3ea725f82e1e76684f0708bbedd871fc96da89945adeba65c3835a64c/nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+    "bytes": 139103095,
+    "sha256": "042f2500f24c021db8a06c5eec2539027d57460e1c1a762055a6554f72c369bd"
+  },
+  {
+    "name": "nvidia-cutlass-dsl-libs-cu12",
+    "version": "4.8.1",
+    "filename": "nvidia_cutlass_dsl_libs_cu12-4.8.1-cp312-cp312-manylinux_2_28_x86_64.whl",
+    "url": "https://mirrors.aliyun.com/pypi/packages/11/f4/a4f35a52b8a495b5dd3ad7b466567b3dbec656442811085ca1cb7d4a1d97/nvidia_cutlass_dsl_libs_cu12-4.8.1-cp312-cp312-manylinux_2_28_x86_64.whl",
+    "bytes": 91697915,
+    "sha256": "440b88739120c65d96c5f15bbe496a3bd7c26392874d5af6061d38497f84c70c"
+  },
+  {
+    "name": "nvidia-nccl-cu12",
+    "version": "2.27.5",
+    "filename": "nvidia_nccl_cu12-2.27.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+    "url": "https://mirrors.aliyun.com/pypi/packages/6e/89/f7a07dc961b60645dbbf42e80f2bc85ade7feb9a491b11a1e973aa00071f/nvidia_nccl_cu12-2.27.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+    "bytes": 322348229,
+    "sha256": "ad730cf15cb5d25fe849c6e6ca9eb5b76db16a80f13f425ac68d8e2e55624457"
+  },
+  {
+    "name": "opencv-python-headless",
+    "version": "5.0.0.93",
+    "filename": "opencv_python_headless-5.0.0.93-cp37-abi3-manylinux_2_28_x86_64.whl",
+    "url": "https://mirrors.aliyun.com/pypi/packages/9b/21/f6ef335f6e65724aa78b8d792b48d40a48c381715f1e62f5a5049e09d07e/opencv_python_headless-5.0.0.93-cp37-abi3-manylinux_2_28_x86_64.whl",
+    "bytes": 61204038,
+    "sha256": "ed709fdf9aa0bd1f2ed8549e71d19449b03a675bb581eb292285f6861953be37"
+  }
+]
